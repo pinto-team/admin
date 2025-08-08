@@ -1,20 +1,33 @@
-import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useI18n } from "@/providers/I18nProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function App() {
+    const { t, locale } = useI18n();
+
     return (
-        <div className="min-h-dvh p-6 flex items-start justify-center bg-background text-foreground">
-            <Card className="w-full max-w-md">
+        <div className="min-h-dvh p-6 space-y-6">
+            <div className="flex gap-3">
+                <ThemeToggle />
+                <LanguageToggle />
+            </div>
+
+            <div className="rounded-lg border p-6 space-y-2">
+                <h1 className="text-2xl font-bold">{t("title")}</h1>
+                <p className="text-sm text-muted-foreground">{t("desc")}</p>
+                <p className="text-xs opacity-70">({locale.toUpperCase()})</p>
+            </div>
+
+            <Card className="max-w-md">
                 <CardHeader>
-                    <CardTitle className="text-xl">ShadCN + Tailwind v4 تست</CardTitle>
+                    <CardTitle>{t("sampleCardTitle")}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                    <p>اگر استایل‌ها لود شده باشن، این کارت و دکمه‌ها باید ظاهر شیکی داشته باشن.</p>
-                    <div className="flex gap-3">
-                        <Button>دکمه عادی</Button>
-                        <Button variant="secondary">ثانویه</Button>
-                        <Button variant="outline">Outline</Button>
-                    </div>
+                <CardContent className="flex gap-3">
+                    <Button>{t("primary")}</Button>
+                    <Button variant="secondary">{t("secondary")}</Button>
+                    <Button variant="outline">{t("outline")}</Button>
                 </CardContent>
             </Card>
         </div>
