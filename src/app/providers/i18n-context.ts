@@ -1,6 +1,5 @@
 import { createContext } from "react";
-
-export type Locale = "fa" | "en";
+import type { Locale } from "@/shared/i18n/messages";
 
 export type I18nCtxType = {
     locale: Locale;

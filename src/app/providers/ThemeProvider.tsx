@@ -1,8 +1,9 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { ThemeCtx, type Theme } from "./theme-context";
+
+type Theme = "light" | "dark";
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-    const [theme, setTheme] = useState<Theme>(() => {
+    const [theme] = useState<Theme>(() => {
         const saved = localStorage.getItem("theme") as Theme | null;
         if (saved) return saved;
         return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -14,11 +15,5 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
         localStorage.setItem("theme", theme);
     }, [theme]);
 
-    const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
-
-    return (
-        <ThemeCtx.Provider value={{ theme, toggle, set: setTheme }}>
-            {children}
-        </ThemeCtx.Provider>
-    );
+    return <>{children}</>;
 }

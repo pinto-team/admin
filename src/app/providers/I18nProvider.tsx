@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { I18nCtx, type Locale } from "./i18n-context";
-import { messages } from "@/i18n/messages";
+import { I18nCtx } from "./i18n-context";
+import { messages, type Locale } from "@/shared/i18n/messages";
 
 export default function I18nProvider({ children }: { children: ReactNode }) {
     const [locale, setLocale] = useState<Locale>(() => (localStorage.getItem("locale") as Locale) || "fa");
@@ -17,9 +17,5 @@ export default function I18nProvider({ children }: { children: ReactNode }) {
         return (key: string) => dict[key] ?? key;
     }, [locale]);
 
-    return (
-        <I18nCtx.Provider value={{ locale, setLocale, t }}>
-            {children}
-        </I18nCtx.Provider>
-    );
+    return <I18nCtx.Provider value={{ locale, setLocale, t }}>{children}</I18nCtx.Provider>;
 }
