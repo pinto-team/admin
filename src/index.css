@@ -3,6 +3,7 @@
 
 /* tokens */
 @import "@/design-system/tokens.css";
+@import "../fonts/IRANSansX.css";
 
 /* base */
 @layer base {

@@ -1,12 +1,10 @@
+import { jsx as _jsx } from "react/jsx-runtime";
 import { Outlet, useLocation } from "react-router-dom";
 import DashboardLayout from "@/core/layouts/DashboardLayout";
-
 export default function AppRoot() {
     const { pathname } = useLocation();
-
     if (pathname.startsWith("/login")) {
-        return <Outlet />;
+        return _jsx(Outlet, {});
     }
-
-    return <DashboardLayout />;
+    return (_jsx(DashboardLayout, { children: _jsx(Outlet, {}) }));
 }
