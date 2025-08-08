@@ -1,8 +1,8 @@
 import ThemeToggle from "@/components/ThemeToggle";
 import LanguageToggle from "@/components/LanguageToggle";
-import { useI18n } from "@/providers/I18nProvider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useI18n } from "@/hooks/useI18n";
 
 export default function App() {
     const { t, locale } = useI18n();

@@ -1,10 +1,7 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { ThemeCtx, type Theme } from "./theme-context";
 
-type Theme = "light" | "dark";
-type Ctx = { theme: Theme; toggle: () => void; set: (t: Theme) => void };
-const ThemeCtx = createContext<Ctx | null>(null);
-
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export default function ThemeProvider({ children }: { children: ReactNode }) {
     const [theme, setTheme] = useState<Theme>(() => {
         const saved = localStorage.getItem("theme") as Theme | null;
         if (saved) return saved;
@@ -17,15 +14,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem("theme", theme);
     }, [theme]);
 
+    const toggle = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+
     return (
-        <ThemeCtx.Provider value={{ theme, toggle: () => setTheme(t => t === "dark" ? "light" : "dark"), set: setTheme }}>
+        <ThemeCtx.Provider value={{ theme, toggle, set: setTheme }}>
             {children}
         </ThemeCtx.Provider>
     );
 }
-
-export const useTheme = () => {
-    const ctx = useContext(ThemeCtx);
-    if (!ctx) throw new Error("useTheme must be used within ThemeProvider");
-    return ctx;
-};

@@ -1,6 +1,6 @@
-import { useTheme } from "@/providers/ThemeProvider";
 import { Sun, Moon } from "lucide-react";
-import { useI18n } from "@/providers/I18nProvider";
+import { useTheme } from "@/hooks/useTheme";
+import {useI18n} from "@/hooks/useI18n.ts"; // ✅ از hooks
 
 export default function ThemeToggle() {
     const { theme, toggle } = useTheme();

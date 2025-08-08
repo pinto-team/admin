@@ -1,4 +1,4 @@
-import { useI18n } from "@/providers/I18nProvider";
+import { useI18n } from "@/hooks/useI18n";
 
 export default function LanguageToggle() {
     const { locale, setLocale, t } = useI18n();
