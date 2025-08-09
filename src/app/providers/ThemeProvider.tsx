@@ -11,6 +11,8 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         const root = document.documentElement;
         root.classList.toggle("dark", theme === "dark");
+        // DaisyUI theme name mapping (use "business" for dark, "light" for light by default)
+        root.setAttribute("data-theme", theme === "dark" ? "business" : "light");
         localStorage.setItem("theme", theme);
     }, [theme]);
 
