@@ -1,81 +1,80 @@
 import { Link, Outlet } from "react-router-dom";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Menu } from "lucide-react";
 
 import { useI18n } from "@/shared/hooks/useI18n";
 import LanguageToggle from "@/shared/components/LanguageToggle";
 import ThemeToggle from "@/shared/components/ThemeToggle";
 
-import { Button } from "@/shared/components/ui/button";
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/shared/components/ui/sheet";
-import { ScrollArea } from "@/shared/components/ui/scroll-area";
-
 import SidebarNav from "./SidebarNav";
 
 export default function DashboardLayout() {
     const { t, locale } = useI18n();
 
-    const sheetSide = useMemo<"left" | "right">(
-        () => (locale === "fa" ? "right" : "left"),
-        [locale]
-    );
+    // For RTL (Farsi) we show drawer on the right using `drawer-end`
+    const drawerOrientationClass = locale === "fa" ? "drawer-end" : "";
+
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     return (
-        <div className="min-h-dvh grid grid-rows-[auto_1fr] bg-background text-foreground">
-            {/* Header */}
-            <header className="sticky top-0 z-10 border-b bg-background/80 backdrop-blur p-3 flex items-center gap-3">
-                {/* Mobile menu trigger */}
-                <div className="lg:hidden">
-                    <Sheet>
-                        <SheetTrigger asChild>
-                            <Button variant="outline" size="icon" aria-label="Open menu">
-                                <Menu className="size-4" />
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side={sheetSide} className="w-72 p-0">
-                            <div className="p-4 border-b">
-                                <SheetHeader>
-                                    <SheetTitle>{t("appTitle")}</SheetTitle>
-                                </SheetHeader>
-                            </div>
-                            <ScrollArea className="h-[calc(100vh-4rem)] p-4">
-                                <SidebarNav />
-                            </ScrollArea>
-                        </SheetContent>
-                    </Sheet>
-                </div>
+        <div className={`drawer lg:drawer-open ${drawerOrientationClass}`}>
+            {/* --- Mobile / small screens drawer toggle --- */}
+            <input
+                id="app-drawer"
+                type="checkbox"
+                className="drawer-toggle"
+                checked={mobileOpen}
+                onChange={() => setMobileOpen((prev) => !prev)}
+            />
 
-                {/* Brand (desktop) */}
-                <Link to="/" className="font-bold hidden lg:inline">
-                    {t("appTitle")}
-                </Link>
+            {/* Main content */}
+            <div className="drawer-content flex flex-col min-h-dvh">
+                {/* Header */}
+                <header className="navbar bg-base-100/80 backdrop-blur sticky top-0 z-10 border-b">
+                    {/* Mobile menu trigger */}
+                    <div className="navbar-start lg:hidden">
+                        <label
+                            htmlFor="app-drawer"
+                            className="btn btn-ghost btn-square"
+                            aria-label="Open menu"
+                        >
+                            <Menu className="size-5" />
+                        </label>
+                    </div>
 
-                <div className="ms-auto flex items-center gap-2">
-                    <LanguageToggle />
-                    <ThemeToggle />
-                </div>
-            </header>
+                    {/* Brand */}
+                    <div className="navbar-center lg:navbar-start">
+                        <Link to="/" className="font-bold text-lg">
+                            {t("appTitle")}
+                        </Link>
+                    </div>
 
-            {/* Body */}
-            <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] min-h-0">
-                {/* Static sidebar (desktop) */}
-                <aside className="hidden lg:flex lg:flex-col border-e">
-                    <div className="p-4 border-b font-bold">{t("appTitle")}</div>
-                    <ScrollArea className="flex-1 p-4">
-                        <SidebarNav />
-                    </ScrollArea>
-                </aside>
+                    <div className="navbar-end flex gap-2">
+                        <LanguageToggle />
+                        <ThemeToggle />
+                    </div>
+                </header>
 
-                {/* Content */}
-                <main className="p-4 md:p-6 min-w-0">
+                {/* Routed pages */}
+                <main className="p-4 md:p-6 grow min-w-0">
                     <Outlet />
                 </main>
+            </div>
+
+            {/* Sidebar */}
+            <div className="drawer-side">
+                {/* Clickable overlay for mobile */}
+                <label
+                    htmlFor="app-drawer"
+                    className="drawer-overlay"
+                    onClick={() => setMobileOpen(false)}
+                />
+
+                {/* Sidebar content */}
+                <aside className="w-72 h-full bg-base-200 border-e p-4 flex flex-col">
+                    <h2 className="font-bold mb-4 hidden lg:block">{t("appTitle")}</h2>
+                    <SidebarNav />
+                </aside>
             </div>
         </div>
     );
