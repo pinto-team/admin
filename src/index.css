@@ -9,7 +9,17 @@
 @layer base {
     html {
         font-family: IranSansX, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+        direction: rtl;
     }
     * { @apply border-border; }
     body { @apply bg-background text-foreground; }
+}
+
+/* DaisyUI RTL support */
+[dir="rtl"] .drawer-side {
+    right: 0;
+}
+
+[dir="rtl"] .drawer-side .drawer-overlay {
+    right: 0;
 }
