@@ -1,11 +1,10 @@
-import { Button } from "@/shared/components/ui/button";
 import { useTheme } from "@/shared/hooks/useTheme";
 
 export default function ThemeToggle() {
     const { theme, toggleTheme } = useTheme();
     return (
-        <Button variant="outline" size="sm" onClick={toggleTheme}>
+        <button className="btn btn-ghost btn-sm" onClick={toggleTheme}>
             {theme === "dark" ? "🌙" : "☀️"}
-        </Button>
+        </button>
     );
 }
