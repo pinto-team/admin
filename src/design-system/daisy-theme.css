@@ -1,0 +1,88 @@
+/* DaisyUI Theme Configuration */
+@layer base {
+    :root {
+        /* Light Theme Colors */
+        --p: 259 94% 51%;           /* Primary - Purple */
+        --pf: 259 94% 41%;          /* Primary Focus */
+        --pc: 0 0% 100%;            /* Primary Content */
+        
+        --s: 314 100% 47%;          /* Secondary - Pink */
+        --sf: 314 100% 37%;         /* Secondary Focus */
+        --sc: 0 0% 100%;            /* Secondary Content */
+        
+        --a: 174 75% 46%;           /* Accent - Teal */
+        --af: 174 75% 36%;          /* Accent Focus */
+        --ac: 0 0% 100%;            /* Accent Content */
+        
+        --n: 219 14% 28%;           /* Neutral */
+        --nf: 222 13% 19%;          /* Neutral Focus */
+        --nc: 0 0% 100%;            /* Neutral Content */
+        
+        --b1: 0 0% 100%;            /* Base 100 - Background */
+        --b2: 0 0% 96%;             /* Base 200 */
+        --b3: 0 0% 93%;             /* Base 300 */
+        --bc: 215 19% 35%;          /* Base Content */
+        
+        --in: 198 93% 60%;          /* Info */
+        --su: 158 64% 52%;          /* Success */
+        --wa: 43 96% 56%;           /* Warning */
+        --er: 0 91% 71%;            /* Error */
+        
+        --rounded-box: 1rem;
+        --rounded-btn: 0.5rem;
+        --rounded-badge: 1.9rem;
+        --animation-btn: 0.25s;
+        --animation-input: 0.2s;
+        --btn-focus-scale: 0.95;
+        --border-btn: 1px;
+        --tab-border: 1px;
+        --tab-radius: 0.5rem;
+    }
+    
+    [data-theme="dark"] {
+        /* Dark Theme Colors */
+        --p: 259 94% 61%;           /* Primary */
+        --pf: 259 94% 51%;          /* Primary Focus */
+        --pc: 0 0% 100%;            /* Primary Content */
+        
+        --s: 314 100% 57%;          /* Secondary */
+        --sf: 314 100% 47%;         /* Secondary Focus */
+        --sc: 0 0% 100%;            /* Secondary Content */
+        
+        --a: 174 75% 56%;           /* Accent */
+        --af: 174 75% 46%;          /* Accent Focus */
+        --ac: 0 0% 100%;            /* Accent Content */
+        
+        --n: 219 14% 38%;           /* Neutral */
+        --nf: 222 13% 29%;          /* Neutral Focus */
+        --nc: 0 0% 100%;            /* Neutral Content */
+        
+        --b1: 220 18% 20%;          /* Base 100 */
+        --b2: 220 17% 17%;          /* Base 200 */
+        --b3: 219 18% 15%;          /* Base 300 */
+        --bc: 220 13% 69%;          /* Base Content */
+        
+        --in: 198 93% 70%;          /* Info */
+        --su: 158 64% 62%;          /* Success */
+        --wa: 43 96% 66%;           /* Warning */
+        --er: 0 91% 81%;            /* Error */
+    }
+}
+
+/* RTL Specific Styles */
+[dir="rtl"] {
+    .drawer-toggle ~ .drawer-side .drawer-overlay {
+        right: 0;
+        left: auto;
+    }
+    
+    .drawer-toggle ~ .drawer-side > .drawer-content {
+        right: -100%;
+        left: auto;
+    }
+    
+    .drawer-toggle:checked ~ .drawer-side > .drawer-content {
+        right: 0;
+        left: auto;
+    }
+}

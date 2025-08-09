@@ -1,15 +1,23 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
+@import "daisyui";
 
 /* tokens */
 @import "@/design-system/tokens.css";
+@import "@/design-system/daisy-theme.css";
 @import "../fonts/IRANSansX.css";
+
+/* RTL support */
+:root {
+    direction: rtl;
+}
 
 /* base */
 @layer base {
     html {
         font-family: IranSansX, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+        direction: rtl;
     }
     * { @apply border-border; }
-    body { @apply bg-background text-foreground; }
+    body { @apply bg-base-100 text-base-content; }
 }
