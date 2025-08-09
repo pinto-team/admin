@@ -10,7 +10,12 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         const root = document.documentElement;
-        root.classList.toggle("dark", theme === "dark");
+        // Remove existing theme classes
+        root.classList.remove("light", "dark");
+        // Add the current theme class
+        root.classList.add(theme);
+        // Set data-theme attribute for DaisyUI
+        root.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
     }, [theme]);
 
