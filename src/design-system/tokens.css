@@ -1,108 +1,63 @@
-@custom-variant dark (&:is(.dark *));
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
 
-/* Tailwind v4 map: این‌ها را به tailwind theme وصل می‌کنیم */
+/* DaisyUI Integration - Keep some custom tokens for backward compatibility */
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
-
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-border: var(--border);
-    --color-ring: var(--ring);
-
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-
-    /* semantic states */
-    --color-success: var(--success);
-    --color-success-foreground: var(--success-foreground);
-    --color-warning: var(--warning);
-    --color-warning-foreground: var(--warning-foreground);
-    --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
-    --color-info: var(--info);
-    --color-info-foreground: var(--info-foreground);
 }
 
-/* Light */
+/* Custom CSS Variables that map to DaisyUI themes */
 :root {
-    --radius: 10px;
-
-    /* base */
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.22 0 0);
-
-    /* surfaces */
-    --card: oklch(0.985 0 0);
-    --card-foreground: var(--foreground);
-    --muted: oklch(0.96 0 0);
-    --muted-foreground: oklch(0.52 0 0);
-
-    /* borders & rings */
-    --border: oklch(0.92 0 0);
-    --ring: oklch(0.75 0.03 145);
-
-    /* brand */
-    --primary: oklch(0.66 0.146 237.712);
-    --primary-foreground: oklch(0.99 0 0);
-    --secondary: oklch(0.94 0 0);
-    --secondary-foreground: oklch(0.26 0 0);
-    --accent: oklch(0.96 0 0);
-    --accent-foreground: oklch(0.26 0 0);
-
-    /* states */
-    --success: oklch(0.80 0.10 145);
-    --success-foreground: oklch(0.15 0 0);
-    --warning: oklch(0.93 0.12 90);
-    --warning-foreground: oklch(0.20 0.08 90);
-    --destructive: oklch(0.72 0.16 25);
-    --destructive-foreground: oklch(0.12 0 0);
-    --info: oklch(0.86 0.09 210);
-    --info-foreground: oklch(0.18 0.03 210);
+    --radius: 8px; /* DaisyUI default border radius */
+    
+    /* Map to DaisyUI CSS variables */
+    --background: oklch(var(--b1));
+    --foreground: oklch(var(--bc));
+    --card: oklch(var(--b2));
+    --card-foreground: oklch(var(--bc));
+    --muted: oklch(var(--b3));
+    --muted-foreground: oklch(var(--bc) / 0.6);
+    --border: oklch(var(--b3));
+    --ring: oklch(var(--p));
+    
+    /* Brand colors mapped to DaisyUI */
+    --primary: oklch(var(--p));
+    --primary-foreground: oklch(var(--pc));
+    --secondary: oklch(var(--s));
+    --secondary-foreground: oklch(var(--sc));
+    --accent: oklch(var(--a));
+    --accent-foreground: oklch(var(--ac));
+    
+    /* State colors mapped to DaisyUI */
+    --success: oklch(var(--su));
+    --success-foreground: oklch(var(--suc));
+    --warning: oklch(var(--wa));
+    --warning-foreground: oklch(var(--wac));
+    --destructive: oklch(var(--er));
+    --destructive-foreground: oklch(var(--erc));
+    --info: oklch(var(--in));
+    --info-foreground: oklch(var(--inc));
 }
 
-/* Dark */
-.dark {
-    --background: oklch(0.17 0 0);
-    --foreground: oklch(0.98 0 0);
-
-    --card: oklch(0.20 0 0);
-    --card-foreground: var(--foreground);
-    --muted: oklch(0.23 0 0);
-    --muted-foreground: oklch(0.78 0 0);
-
-    --border: oklch(0.30 0 0);
-    --ring: oklch(0.80 0.10 145);
-
-    --primary: oklch(0.66 0.146 237.712);
-    --primary-foreground: oklch(0.14 0 0);
-    --secondary: oklch(0.24 0 0);
-    --secondary-foreground: oklch(0.98 0 0);
-    --accent: oklch(0.24 0 0);
-    --accent-foreground: oklch(0.98 0 0);
-
-    --success: oklch(0.75 0.11 145);
-    --success-foreground: oklch(0.12 0 0);
-    --warning: oklch(0.62 0.13 85);
-    --warning-foreground: oklch(0.98 0 0);
-    --destructive: oklch(0.60 0.16 25);
-    --destructive-foreground: oklch(0.98 0 0);
-    --info: oklch(0.70 0.10 210);
-    --info-foreground: oklch(0.12 0.02 210);
-}
-
-/* component classes (اختیاری و مفید) */
+/* Utility classes that work with both systems */
 @layer components {
-    .surface { @apply rounded-[var(--radius)] border bg-background text-foreground; }
-    .card-surface { @apply rounded-[var(--radius)] border bg-card text-card-foreground; }
-    .muted-surface { @apply rounded-[var(--radius)] border bg-muted text-muted-foreground; }
+    .surface { 
+        @apply rounded-lg border border-base-300 bg-base-100 text-base-content; 
+    }
+    .card-surface { 
+        @apply card bg-base-100 border border-base-300; 
+    }
+    .muted-surface { 
+        @apply rounded-lg border border-base-300 bg-base-200 text-base-content/60; 
+    }
+    
+    /* Persian/RTL specific utilities */
+    .rtl-container {
+        direction: rtl;
+    }
+    .ltr-container {
+        direction: ltr;
+    }
 }

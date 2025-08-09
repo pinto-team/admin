@@ -10,6 +10,22 @@
     html {
         font-family: IranSansX, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
     }
-    * { @apply border-border; }
-    body { @apply bg-background text-foreground; }
+    
+    /* DaisyUI theme integration */
+    html[data-theme="light"] {
+        color-scheme: light;
+    }
+    
+    html[data-theme="dark"] {
+        color-scheme: dark;
+    }
+    
+    /* RTL support for Persian */
+    [dir="rtl"] {
+        text-align: right;
+    }
+    
+    [dir="ltr"] {
+        text-align: left;
+    }
 }
