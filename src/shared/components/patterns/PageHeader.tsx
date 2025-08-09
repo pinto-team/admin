@@ -13,7 +13,7 @@ export default function PageHeader({
     className?: string;
 }) {
     return (
-        <div className={cn("surface p-5 md:p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between", className)}>
+        <div className={cn("card bg-base-100 shadow p-5 md:p-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between", className)}>
             <div>
                 <H1 className="mb-1">{title}</H1>
                 {subtitle ? <Lead>{subtitle}</Lead> : null}

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
+@plugin "daisyui";
 
 /* tokens */
 @import "@/design-system/tokens.css";

@@ -17,9 +17,11 @@ import {
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 
 import SidebarNav from "./SidebarNav";
+import { useAuth } from "@/app/providers/AuthProvider";
 
 export default function DashboardLayout() {
     const { t, locale } = useI18n();
+    const { logout } = useAuth();
 
     const sheetSide = useMemo<"left" | "right">(
         () => (locale === "fa" ? "right" : "left"),
@@ -59,6 +61,7 @@ export default function DashboardLayout() {
                 <div className="ms-auto flex items-center gap-2">
                     <LanguageToggle />
                     <ThemeToggle />
+                    <button onClick={logout} className="btn btn-outline btn-sm">{t("logout")}</button>
                 </div>
             </header>
 

@@ -28,7 +28,13 @@ export default function SidebarNav() {
     return (
         <nav className="grid gap-1">
             <Item to="/">داشبورد</Item>
-            <Item to="/login">ورود</Item>
+            <Item to="/orders">سفارشات</Item>
+            <Item to="/store">فروشگاه</Item>
+            <Item to="/users">کاربران</Item>
+            <Item to="/couriers">پیک‌ها</Item>
+            <Item to="/finance">مالی</Item>
+            <Item to="/reports">گزارش‌ها</Item>
+            <Item to="/settings">تنظیمات</Item>
         </nav>
     );
 }
